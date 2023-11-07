@@ -1,0 +1,18 @@
+# this file is to be copied to /etc/systemd/system/spring-demo.service
+# http://www.jcgonzalez.com/ubuntu-16-java-service-wrapper-example
+# https://stackoverflow.com/a/21283530/147530
+# to debug check /var/log/syslog on debian. try /var/log/messages on centos
+
+[Unit]
+Description=Spring Demo App
+After=syslog.target
+
+[Service]
+ExecStart=/app/spring-demo/launcher.sh start
+ExecStop=/app/spring-demo/launcher.sh stop
+ExecReload=/app/spring-demo/launcher.sh restart
+User=siddjain
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
